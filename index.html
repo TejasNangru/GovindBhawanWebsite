@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Govind Bhawan – IIT Roorkee</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --deep: #1C2B2D;
+    --teal: #2A7B6F;
+    --teal-light: #3DA08F;
+    --gold: #C8922A;
+    --gold-light: #E8B44A;
+    --warm: #F2EAD8;
+    --text: #2C3A3C;
+    --muted: #6B7F82;
+    --white: #FFFFFF;
+    --card-border: rgba(42,123,111,0.15);
+    --shadow: 0 4px 24px rgba(28,43,45,0.08);
+    --bg: var(--cream);
+    --surface: var(--white);
+    --surface2: var(--warm);
+  }
+  [data-theme="dark"] {
+    --cream: #111B1D;
+    --deep: #E8F0F1;
+    --teal: #3DA08F;
+    --teal-light: #52BBA9;
+    --gold: #E8B44A;
+    --gold-light: #F0C96A;
+    --warm: #1C2B2D;
+    --text: #D0DCDE;
+    --muted: #7A9EA2;
+    --white: #182527;
+    --card-border: rgba(61,160,143,0.2);
+    --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    --bg: #111B1D;
+    --surface: #182527;
+    --surface2: #1C2B2D;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; transition:background 0.3s,color 0.3s; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:rgba(28,43,45,0.97); backdrop-filter:blur(12px);
+    padding:0 2rem; display:flex; align-items:center; justify-content:space-between;
+    height:64px; border-bottom:1px solid rgba(200,146,42,0.3);
+  }
+  [data-theme="dark"] nav { background:rgba(17,27,29,0.97); }
+  .nav-brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .nav-brand .logo {
+    width:40px; height:40px; background:linear-gradient(135deg,var(--teal),var(--gold));
+    border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif; color:#fff; font-size:18px; font-weight:700;
+  }
+  .nav-brand span { color:#fff; font-size:1.1rem; font-weight:600; letter-spacing:0.02em; }
+  .nav-links { display:flex; gap:0.25rem; align-items:center; }
+  .nav-links a {
+    color:rgba(255,255,255,0.75); text-decoration:none; padding:6px 14px;
+    border-radius:8px; font-size:0.85rem; font-weight:500; transition:all 0.2s;
+  }
+  .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.1); }
+  .nav-links .cta { background:var(--gold); color:var(--deep); padding:8px 18px; border-radius:8px; font-weight:600; }
+  .nav-links .cta:hover { background:var(--gold-light); }
+  .nav-right { display:flex; align-items:center; gap:0.5rem; }
+  .dark-toggle {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    color:#fff; width:38px; height:38px; border-radius:10px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:1rem;
+    transition:all 0.2s;
+  }
+  .dark-toggle:hover { background:rgba(255,255,255,0.2); }
+  .hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; }
+  .hamburger span { display:block; width:22px; height:2px; background:#fff; margin:5px 0; border-radius:2px; transition:all 0.3s; }
+  .mobile-menu {
+    display:none; position:fixed; top:64px; left:0; right:0; z-index:999;
+    background:rgba(28,43,45,0.98); padding:1rem 2rem 1.5rem; flex-direction:column; gap:0.5rem;
+  }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { color:rgba(255,255,255,0.85); text-decoration:none; padding:12px 0; font-size:1rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; position:relative; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, #1C2B2D 0%, #2A4540 40%, #1A3530 100%);
+    overflow:hidden;
+  }
+  .hero-pattern {
+    position:absolute; inset:0; opacity:0.06;
+    background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+  }
+  .hero-glow { position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(42,123,111,0.3) 0%, transparent 70%); top:-100px; right:-100px; }
+  .hero-glow2 { position:absolute; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle, rgba(200,146,42,0.2) 0%, transparent 70%); bottom:-50px; left:-50px; }
+  .hero-content { position:relative; text-align:center; padding:2rem; max-width:800px; padding-bottom:10rem; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(200,146,42,0.15); border:1px solid rgba(200,146,42,0.4);
+    color:var(--gold-light); padding:6px 18px; border-radius:100px;
+    font-size:0.8rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
+    margin-bottom:1.5rem;
+  }
+  .hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,4.5rem); color:#fff; line-height:1.15; margin-bottom:1rem; }
+  .hero h1 span { color:var(--gold-light); }
+  .hero p { color:rgba(255,255,255,0.65); font-size:1.1rem; line-height:1.7; margin-bottom:2.5rem; max-width:560px; margin-left:auto; margin-right:auto; }
+  .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+  .btn-primary {
+    background:var(--teal); color:#fff; padding:14px 28px; border-radius:12px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    transition:all 0.2s; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary:hover { background:var(--teal-light); transform:translateY(-2px); }
+  .btn-outline {
+    background:transparent; color:#fff; padding:14px 28px; border-radius:12px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    border:1px solid rgba(255,255,255,0.3); transition:all 0.2s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-outline:hover { background:rgba(255,255,255,0.1); transform:translateY(-2px); }
+  .hero-stats {
+    position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
+    display:flex; gap:3rem; padding:1.25rem 3rem;
+    background:rgba(255,255,255,0.05); backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.1); border-radius:100px;
+    white-space:nowrap;
+  }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--gold-light); font-weight:700; }
+  .stat-label { font-size:0.72rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.1em; }
+
+  /* SECTIONS */
+  section { padding:5rem 2rem; }
+  .section-inner { max-width:1100px; margin:0 auto; }
+  .section-tag { display:inline-block; background:rgba(42,123,111,0.1); color:var(--teal); padding:4px 14px; border-radius:100px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem; }
+  .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:var(--deep); margin-bottom:1rem; }
+  .section-sub { color:var(--muted); font-size:1rem; line-height:1.7; max-width:560px; }
+
+  /* ABOUT */
+  #about { background:var(--surface); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .about-visual { background:linear-gradient(135deg, var(--teal) 0%, #1A5548 100%); border-radius:24px; padding:3rem; color:#fff; position:relative; overflow:hidden; }
+  .about-visual::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.05); }
+  .about-visual h3 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:1rem; }
+  .about-visual p { opacity:0.8; line-height:1.7; font-size:0.95rem; margin-bottom:1.5rem; }
+  .about-chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:6px 14px; border-radius:100px; font-size:0.8rem; }
+  .about-points { display:grid; gap:1.25rem; }
+  .about-point { display:flex; align-items:flex-start; gap:1rem; padding:1.25rem; background:var(--surface2); border-radius:16px; }
+  .point-icon { width:44px; height:44px; min-width:44px; border-radius:12px; background:var(--teal); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+  .point-title { font-weight:600; font-size:0.95rem; margin-bottom:4px; color:var(--deep); }
+  .point-desc { font-size:0.85rem; color:var(--muted); line-height:1.6; }
+
+  /* MESS */
+  #mess { background:var(--bg); }
+  .mess-container { background:var(--surface); border-radius:24px; padding:2.5rem; box-shadow:var(--shadow); }
+  .mess-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
+  .mess-title-area h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--deep); }
+  .mess-title-area p { color:var(--muted); font-size:0.85rem; margin-top:4px; }
+  .mess-header-right { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+  .mess-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:2rem; }
+  .meal-card { border:1.5px solid var(--card-border); border-radius:16px; padding:1.5rem; text-align:center; transition:all 0.2s; position:relative; overflow:hidden; }
+  .meal-card.marked { background:rgba(42,123,111,0.08); border-color:var(--teal); }
+  .meal-card.absent { background:rgba(239,68,68,0.05); border-color:rgba(239,68,68,0.4); }
+  .meal-time { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
+  .meal-name { font-weight:600; font-size:1rem; color:var(--deep); margin-bottom:0.75rem; }
+  .meal-menu { font-size:0.8rem; color:var(--muted); line-height:1.6; margin-bottom:1rem; }
+  .meal-actions { display:flex; gap:8px; }
+  .mark-btn { flex:1; padding:8px; border-radius:10px; border:none; cursor:pointer; background:var(--teal); color:#fff; font-weight:600; font-size:0.82rem; transition:all 0.2s; }
+  .mark-btn.marked { background:#22c55e; }
+  .absent-btn { flex:1; padding:8px; border-radius:10px; border:1.5px solid rgba(239,68,68,0.4); cursor:pointer; background:transparent; color:#dc2626; font-weight:600; font-size:0.82rem; transition:all 0.2s; }
+  .absent-btn.active { background:#dc2626; color:#fff; border-color:#dc2626; }
+  .mark-btn:hover,.absent-btn:hover { opacity:0.85; }
+  .checkmark { position:absolute; top:12px; right:12px; width:20px; height:20px; border-radius:50%; background:#22c55e; color:#fff; display:none; align-items:center; justify-content:center; font-size:11px; }
+  .meal-card.marked .checkmark { display:flex; }
+  .attendance-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; background:var(--surface2); border-radius:16px; padding:1.5rem; }
+  .att-stat { text-align:center; }
+  .att-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--teal); }
+  .att-label { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+  /* Streak & week view */
+  .week-strip { display:flex; gap:8px; margin-bottom:1.5rem; flex-wrap:wrap; }
+  .day-pill { flex:1; min-width:70px; text-align:center; padding:12px 8px; border-radius:14px; background:var(--surface2); border:1.5px solid var(--card-border); }
+  .day-pill.today { border-color:var(--teal); background:rgba(42,123,111,0.1); }
+  .day-pill-name { font-size:0.7rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
+  .day-pill-dots { display:flex; justify-content:center; gap:4px; margin-top:6px; }
+  .day-dot { width:10px; height:10px; border-radius:50%; background:var(--card-border); }
+  .day-dot.present { background:#22c55e; }
+  .day-dot.absent-dot { background:#dc2626; }
+
+  /* COMPLAINTS */
+  #complaints { background:var(--surface); }
+  .complaint-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+  .complaint-form-wrap { background:var(--surface2); border-radius:20px; padding:2rem; }
+  .complaint-list-wrap { display:flex; flex-direction:column; gap:0; }
+  .complaint-form-wrap h3,.complaint-list-wrap h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--deep); margin-bottom:1.25rem; }
+  .comp-form { display:grid; gap:1rem; }
+  .comp-categories { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:0.5rem; }
+  .cat-btn { padding:6px 14px; border-radius:100px; border:1.5px solid var(--card-border); background:var(--surface); cursor:pointer; font-size:0.8rem; font-family:inherit; color:var(--muted); transition:all 0.2s; }
+  .cat-btn.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+  .cat-btn:hover { border-color:var(--teal); color:var(--teal); }
+  textarea { resize:vertical; min-height:90px; }
+  .priority-row { display:flex; gap:0.75rem; }
+  .priority-opt { flex:1; padding:10px; text-align:center; border:1.5px solid var(--card-border); border-radius:10px; cursor:pointer; font-size:0.82rem; font-family:inherit; background:var(--surface); color:var(--text); transition:all 0.2s; }
+  .priority-opt.p-low.active { background:rgba(34,197,94,0.1); border-color:#22c55e; color:#166534; }
+  .priority-opt.p-med.active { background:rgba(234,179,8,0.1); border-color:#ca8a04; color:#854d0e; }
+  .priority-opt.p-high.active { background:rgba(239,68,68,0.1); border-color:#dc2626; color:#991b1b; }
+  .complaint-items { display:grid; gap:1rem; max-height:520px; overflow-y:auto; padding-right:4px; }
+  .complaint-item { background:var(--surface2); border-radius:14px; padding:1.25rem; border-left:4px solid var(--teal); position:relative; }
+  .complaint-item.high { border-left-color:#dc2626; }
+  .complaint-item.medium { border-left-color:#ca8a04; }
+  .ci-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem; gap:8px; }
+  .ci-title { font-weight:600; font-size:0.9rem; color:var(--deep); flex:1; }
+  .ci-actions { display:flex; gap:6px; align-items:center; flex-shrink:0; }
+  .ci-badge { font-size:0.7rem; font-weight:600; padding:3px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:0.05em; cursor:pointer; transition:all 0.2s; }
+  .badge-open { background:rgba(239,68,68,0.1); color:#dc2626; }
+  .badge-progress { background:rgba(234,179,8,0.1); color:#ca8a04; }
+  .badge-done { background:rgba(34,197,94,0.1); color:#166534; }
+  .delete-btn { background:none; border:none; cursor:pointer; color:var(--muted); font-size:1rem; padding:2px 6px; border-radius:6px; transition:all 0.2s; }
+  .delete-btn:hover { background:rgba(239,68,68,0.1); color:#dc2626; }
+  .ci-desc { font-size:0.82rem; color:var(--muted); margin-bottom:0.5rem; line-height:1.5; }
+  .ci-meta { font-size:0.75rem; color:var(--muted); }
+  .form-group { display:flex; flex-direction:column; gap:6px; }
+  .form-label { font-size:0.8rem; font-weight:500; color:var(--deep); }
+  .form-input,.form-select { padding:10px 14px; border:1.5px solid var(--card-border); border-radius:10px; font-family:inherit; font-size:0.9rem; background:var(--surface); color:var(--text); transition:border-color 0.2s; outline:none; }
+  .form-input:focus,.form-select:focus { border-color:var(--teal); }
+
+  /* GUEST ROOM BOOKING */
+  #booking { background:var(--bg); }
+  .booking-container { background:var(--surface); border-radius:24px; overflow:hidden; box-shadow:var(--shadow); }
+  .booking-header { background:linear-gradient(135deg, #1C2B2D, #2A4540); padding:2rem 2.5rem; color:#fff; }
+  .booking-header h3 { font-family:'Playfair Display',serif; font-size:1.6rem; margin-bottom:0.5rem; }
+  .booking-header p { opacity:0.7; font-size:0.9rem; }
+  .booking-body { padding:2.5rem; }
+  .room-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-bottom:2rem; }
+  .room-card { border:2px solid var(--card-border); border-radius:16px; padding:1.5rem; cursor:pointer; transition:all 0.25s; text-align:center; position:relative; }
+  .room-card.selected { border-color:var(--teal); background:rgba(42,123,111,0.05); }
+  .room-card:hover { border-color:var(--teal); transform:translateY(-3px); }
+  .room-avail-badge { position:absolute; top:10px; right:10px; font-size:0.68rem; font-weight:700; padding:3px 8px; border-radius:100px; }
+  .avail-green { background:rgba(34,197,94,0.12); color:#166534; }
+  .avail-red { background:rgba(239,68,68,0.12); color:#dc2626; }
+  .room-icon { font-size:2rem; margin-bottom:0.75rem; display:block; }
+  .room-type { font-weight:700; font-size:0.95rem; color:var(--deep); margin-bottom:4px; }
+  .room-price { color:var(--teal); font-weight:600; font-size:0.85rem; margin-bottom:8px; }
+  .room-desc { font-size:0.78rem; color:var(--muted); margin-bottom:8px; }
+  .room-features { display:flex; flex-wrap:wrap; justify-content:center; gap:4px; margin-top:8px; }
+  .room-feature { font-size:0.68rem; background:var(--surface2); color:var(--muted); padding:2px 8px; border-radius:100px; }
+  .booking-form { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .booking-form .full { grid-column:1/-1; }
+  /* Availability calendar */
+  .avail-section { background:var(--surface2); border-radius:16px; padding:1.5rem; margin-bottom:1.5rem; }
+  .avail-section h4 { font-weight:600; font-size:0.95rem; color:var(--deep); margin-bottom:1rem; }
+  .avail-mini-grid { display:flex; gap:6px; flex-wrap:wrap; }
+  .avail-day { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.82rem; font-weight:600; }
+  .avail-day.free { background:rgba(34,197,94,0.12); color:#166534; cursor:pointer; border:1.5px solid transparent; transition:all 0.2s; }
+  .avail-day.free:hover,.avail-day.free.picked { border-color:#22c55e; background:rgba(34,197,94,0.25); }
+  .avail-day.booked { background:rgba(239,68,68,0.1); color:#dc2626; cursor:not-allowed; }
+  .avail-day.partial { background:rgba(234,179,8,0.1); color:#ca8a04; cursor:pointer; }
+  .avail-legend { display:flex; gap:1rem; margin-top:0.75rem; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:0.75rem; color:var(--muted); }
+  .legend-dot { width:10px; height:10px; border-radius:50%; }
+  .price-summary { background:rgba(42,123,111,0.08); border:1px solid var(--card-border); border-radius:12px; padding:1.25rem; margin-top:1.5rem; }
+  .price-row { display:flex; justify-content:space-between; font-size:0.88rem; color:var(--muted); margin-bottom:6px; }
+  .price-total { display:flex; justify-content:space-between; font-weight:700; font-size:1rem; color:var(--deep); border-top:1px solid var(--card-border); padding-top:10px; margin-top:10px; }
+  .rules-box { background:rgba(200,146,42,0.08); border:1px solid rgba(200,146,42,0.3); border-radius:12px; padding:1.25rem; margin-top:1.5rem; }
+  .rules-box h4 { font-size:0.85rem; font-weight:600; color:var(--gold); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.05em; }
+  .rules-list { list-style:none; display:grid; gap:6px; }
+  .rules-list li { font-size:0.82rem; color:var(--muted); display:flex; gap:8px; align-items:flex-start; }
+  .rules-list li::before { content:'✓'; color:var(--teal); font-weight:700; flex-shrink:0; margin-top:1px; }
+
+  /* SPORTS */
+  #sports { background:var(--surface); }
+  .sports-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.25rem; }
+  .sport-card { background:var(--surface2); border-radius:20px; padding:2rem 1.5rem; text-align:center; transition:all 0.3s; cursor:pointer; border:2px solid transparent; position:relative; overflow:hidden; }
+  .sport-card:hover { border-color:var(--teal); transform:translateY(-5px); box-shadow:0 12px 32px rgba(42,123,111,0.15); }
+  .sport-icon { font-size:2.5rem; display:block; margin-bottom:1rem; }
+  .sport-name { font-weight:700; font-size:1rem; color:var(--deep); margin-bottom:4px; }
+  .sport-time { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+  .sport-avail { font-size:0.75rem; font-weight:600; padding:3px 10px; border-radius:100px; display:inline-block; }
+  .avail-yes { background:rgba(34,197,94,0.12); color:#166534; }
+  .avail-limited { background:rgba(234,179,8,0.12); color:#854d0e; }
+  .sport-detail-modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:2000; display:none; align-items:center; justify-content:center; padding:1rem; }
+  .sport-detail-modal.open { display:flex; }
+  .modal-box { background:var(--surface); border-radius:24px; padding:2.5rem; max-width:500px; width:100%; position:relative; animation:slideUp 0.3s ease; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .modal-close { position:absolute; top:1rem; right:1rem; background:var(--surface2); border:none; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text); }
+  .modal-icon { font-size:3rem; margin-bottom:1rem; }
+  .modal-name { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--deep); margin-bottom:0.5rem; }
+  .modal-details { display:grid; gap:0.75rem; margin-top:1.25rem; }
+  .modal-detail { display:flex; gap:12px; align-items:flex-start; padding:12px; background:var(--surface2); border-radius:12px; }
+  .md-label { font-size:0.78rem; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.05em; min-width:80px; }
+  .md-val { font-size:0.88rem; color:var(--text); }
+
+  /* GALLERY */
+  #gallery { background:var(--bg); }
+  .gallery-filter { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:2rem; }
+  .filter-btn { padding:8px 20px; border-radius:100px; border:1.5px solid var(--card-border); background:var(--surface); cursor:pointer; font-size:0.85rem; font-family:inherit; color:var(--muted); transition:all 0.2s; font-weight:500; }
+  .filter-btn.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+  .filter-btn:hover:not(.active) { border-color:var(--teal); color:var(--teal); }
+  .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:1rem; grid-auto-rows:200px; }
+  .gallery-item { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; transition:transform 0.3s; background:var(--surface2); }
+  .gallery-item:nth-child(3n+1) { grid-row:span 2; }
+  .gallery-item:hover { transform:scale(1.02); z-index:10; }
+  .gallery-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; }
+  .gallery-emoji { font-size:3rem; }
+  .gallery-label { font-size:0.8rem; font-weight:600; color:var(--muted); text-align:center; padding:0 1rem; }
+  /* Fixed: overlay is pointer-events:none so hover doesn't cause issues */
+  .gallery-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(28,43,45,0.8) 0%, transparent 60%); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:1.25rem; pointer-events:none; }
+  .gallery-item:hover .gallery-overlay { opacity:1; }
+  .gallery-tag { color:#fff; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; }
+
+  /* NOTICES */
+  #notices { background:var(--surface); }
+  .notices-layout { display:grid; grid-template-columns:2fr 1fr; gap:2rem; }
+  .notice-board h3,.event-calendar h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--deep); margin-bottom:1.25rem; }
+  .notice-list { display:grid; gap:1rem; }
+  .notice-item { display:flex; gap:1.25rem; align-items:flex-start; padding:1.25rem; background:var(--surface2); border-radius:16px; border-left:4px solid var(--teal); transition:all 0.2s; }
+  .notice-item:hover { box-shadow:0 4px 16px rgba(42,123,111,0.1); }
+  .notice-item.urgent { border-left-color:#dc2626; }
+  .notice-item.event { border-left-color:var(--gold); }
+  .notice-date-box { text-align:center; min-width:50px; background:var(--surface); border-radius:10px; padding:8px 4px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+  .notice-day { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--teal); line-height:1; }
+  .notice-month { font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+  .notice-content h4 { font-weight:600; font-size:0.95rem; color:var(--deep); margin-bottom:4px; }
+  .notice-content p { font-size:0.82rem; color:var(--muted); line-height:1.5; }
+  .notice-type { font-size:0.7rem; font-weight:600; padding:2px 8px; border-radius:100px; text-transform:uppercase; letter-spacing:0.05em; margin-top:6px; display:inline-block; }
+  .type-info { background:rgba(42,123,111,0.1); color:var(--teal); }
+  .type-urgent { background:rgba(239,68,68,0.1); color:#dc2626; }
+  .type-event { background:rgba(200,146,42,0.1); color:var(--gold); }
+  .calendar-wrap { background:var(--surface2); border-radius:20px; padding:1.5rem; }
+  .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+  .cal-month { font-weight:700; color:var(--deep); font-size:1rem; }
+  .cal-nav { background:none; border:none; cursor:pointer; padding:4px 10px; border-radius:8px; font-size:1rem; color:var(--muted); transition:all 0.2s; }
+  .cal-nav:hover { background:var(--surface); color:var(--teal); }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; }
+  .cal-day-header { font-size:0.7rem; font-weight:600; color:var(--muted); padding:4px 0; text-transform:uppercase; }
+  .cal-day { font-size:0.82rem; padding:6px 4px; border-radius:8px; cursor:default; color:var(--text); }
+  .cal-day.empty { opacity:0; }
+  .cal-day.today { background:var(--teal); color:#fff; font-weight:700; }
+  .cal-day.has-event { background:rgba(200,146,42,0.15); color:var(--gold); font-weight:600; cursor:pointer; }
+  .upcoming-events { margin-top:1.5rem; display:grid; gap:0.75rem; }
+  .ue-item { display:flex; gap:12px; align-items:center; padding:12px; background:var(--surface2); border-radius:12px; }
+  .ue-dot { width:10px; height:10px; min-width:10px; border-radius:50%; background:var(--teal); }
+  .ue-dot.gold { background:var(--gold); }
+  .ue-dot.red { background:#dc2626; }
+  .ue-title { font-size:0.85rem; font-weight:600; color:var(--deep); }
+  .ue-date { font-size:0.75rem; color:var(--muted); }
+
+  /* FOOTER */
+  footer { background:#111B1D; color:rgba(255,255,255,0.65); padding:3rem 2rem; text-align:center; }
+  .footer-inner { max-width:800px; margin:0 auto; }
+  .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:#fff; margin-bottom:0.5rem; }
+  .footer-tagline { font-size:0.85rem; opacity:0.6; margin-bottom:2rem; }
+  .footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin-bottom:2rem; }
+  .footer-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
+  .footer-links a:hover { color:#fff; }
+  .footer-copy { font-size:0.78rem; opacity:0.4; border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; }
+
+  /* TOAST */
+  .toast { position:fixed; bottom:2rem; right:2rem; z-index:3000; background:var(--deep); color:var(--surface); padding:14px 20px; border-radius:14px; font-size:0.9rem; transform:translateY(100px); opacity:0; transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); box-shadow:0 8px 32px rgba(0,0,0,0.3); max-width:320px; display:flex; align-items:center; gap:10px; }
+  [data-theme="dark"] .toast { background:#E8F0F1; color:#111B1D; }
+  .toast.show { transform:translateY(0); opacity:1; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity:0; transform:translateY(30px); transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.1s; }
+  .reveal-delay-2 { transition-delay:0.2s; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    .about-grid,.complaint-grid,.notices-layout { grid-template-columns:1fr; }
+    .mess-grid,.room-cards { grid-template-columns:1fr; }
+    .booking-form { grid-template-columns:1fr; }
+    .booking-form .full { grid-column:1; }
+    .attendance-summary { grid-template-columns:repeat(2,1fr); }
+    .hero-stats { flex-wrap:wrap; gap:1.5rem; padding:1.25rem 2rem; border-radius:20px; bottom:2rem; }
+    .nav-links { display:none; }
+    .hamburger { display:block; }
+    .nav-right .nav-links { display:none; }
+  }
+  @media(max-width:600px) {
+    section { padding:3.5rem 1.25rem; }
+    .gallery-item:nth-child(3n+1) { grid-row:span 1; }
+    .gallery-grid { grid-auto-rows:160px; }
+    .sports-grid { grid-template-columns:repeat(2,1fr); }
+    .hero-stats { display:grid; grid-template-columns:repeat(2,1fr); bottom:1.5rem; border-radius:16px; }
+    .week-strip { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-brand">
+    <div class="logo">GB</div>
+    <span>Govind Bhawan</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#mess">Mess</a>
+    <a href="#complaints">Complaints</a>
+    <a href="#booking">Guest Rooms</a>
+    <a href="#sports">Sports</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#notices" class="cta">Notices</a>
+  </div>
+  <div class="nav-right">
+    <button class="dark-toggle" onclick="toggleDark()" title="Toggle dark mode" id="darkBtn">🌙</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#mess" onclick="closeMobileMenu()">Mess Attendance</a>
+  <a href="#complaints" onclick="closeMobileMenu()">Complaints</a>
+  <a href="#booking" onclick="closeMobileMenu()">Guest Room Booking</a>
+  <a href="#sports" onclick="closeMobileMenu()">Sports</a>
+  <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+  <a href="#notices" onclick="closeMobileMenu()">Notices & Events</a>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">IIT Roorkee • Established 1974</div>
+    <h1>Welcome to<br/><span>Govind Bhawan</span></h1>
+    <p>A home away from home — where academic excellence meets vibrant community life. Building leaders, friendships, and memories for over five decades.</p>
+    <div class="hero-btns">
+      <a href="#mess" class="btn-primary">🍽️ Mark Attendance</a>
+      <a href="#notices" class="btn-outline">📢 Latest Notices</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">450+</div><div class="stat-label">Residents</div></div>
+    <div class="stat"><div class="stat-num">11</div><div class="stat-label">Sports</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid reveal">
+      <div class="about-visual">
+        <h3>Our Legacy</h3>
+        <p>Govind Bhawan is one of the oldest and most prestigious hostels at IIT Roorkee. Home to students across disciplines, we pride ourselves on academic excellence, sporting achievements, and a vibrant cultural ecosystem that shapes future leaders.</p>
+        <p>Our residents have gone on to become scientists, entrepreneurs, civil servants, and artists — carrying forward the spirit of Govind Bhawan to every corner of the globe.</p>
+        <div class="about-chips">
+          <span class="chip">Est. 1974</span>
+          <span class="chip">450+ Residents</span>
+          <span class="chip">BTech • MTech • PhD</span>
+          <span class="chip">IIT Roorkee</span>
+        </div>
+      </div>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="point-icon">🏛️</div>
+          <div>
+            <div class="point-title">World-Class Facilities</div>
+            <div class="point-desc">Spacious rooms, high-speed Wi-Fi, 24/7 power backup, modern washrooms, reading rooms, and fully-equipped common areas.</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🍲</div>
+          <div>
+            <div class="point-title">Nutritious Mess Food</div>
+            <div class="point-desc">Three wholesome meals daily prepared by experienced cooks. Rotating weekly menu with vegetarian and special options every Sunday.</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🏅</div>
+          <div>
+            <div class="point-title">Sporting Excellence</div>
+            <div class="point-desc">Multiple Inter-Hostel Championship titles. State-of-the-art courts, fields, and gym with professional equipment available to all residents.</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🎭</div>
+          <div>
+            <div class="point-title">Cultural Vibrancy</div>
+            <div class="point-desc">Annual fests, cultural nights, quiz competitions, and extracurricular clubs that foster creativity, leadership, and teamwork.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MESS ATTENDANCE -->
+<section id="mess">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Mess System</div>
+      <h2 class="section-title">Meal Attendance</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Mark your daily meals, track your weekly pattern, and help the mess team plan the right quantity of food.</p>
+    </div>
+    <div class="mess-container reveal reveal-delay-1">
+      <div class="mess-header">
+        <div class="mess-title-area">
+          <h3 id="todayDate">Today's Meals</h3>
+          <p>Mark attendance before each meal time</p>
+        </div>
+        <div class="mess-header-right">
+          <div class="form-group" style="flex-direction:row;align-items:center;gap:10px;margin-bottom:0;">
+            <label class="form-label" style="white-space:nowrap;">Roll No:</label>
+            <input type="text" class="form-input" id="rollInput" placeholder="e.g. 23001" style="width:120px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Week strip -->
+      <div class="week-strip" id="weekStrip"></div>
+
+      <div class="mess-grid" id="mealCards"></div>
+
+      <div class="attendance-summary">
+        <div class="att-stat"><div class="att-num" id="thisWeek">18</div><div class="att-label">Meals This Week</div></div>
+        <div class="att-stat"><div class="att-num" id="thisMonth">62</div><div class="att-label">This Month</div></div>
+        <div class="att-stat"><div class="att-num" id="percentage">86%</div><div class="att-label">Attendance Rate</div></div>
+        <div class="att-stat"><div class="att-num" id="todayCount">0</div><div class="att-label">Today Marked</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLAINTS -->
+<section id="complaints">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Complaint Portal</div>
+      <h2 class="section-title">Submit a Complaint</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Water leaks, electrical issues, maintenance problems — report them here and track resolution.</p>
+    </div>
+    <div class="complaint-grid reveal reveal-delay-1">
+      <div class="complaint-form-wrap">
+        <h3>New Complaint</h3>
+        <div class="comp-form">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <div class="comp-categories" id="compCategories">
+              <button class="cat-btn active" onclick="selectCat(this,'water')">💧 Water</button>
+              <button class="cat-btn" onclick="selectCat(this,'electrical')">⚡ Electrical</button>
+              <button class="cat-btn" onclick="selectCat(this,'furniture')">🪑 Furniture</button>
+              <button class="cat-btn" onclick="selectCat(this,'internet')">📶 Internet</button>
+              <button class="cat-btn" onclick="selectCat(this,'sanitation')">🧹 Sanitation</button>
+              <button class="cat-btn" onclick="selectCat(this,'other')">📋 Other</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Room Number</label>
+            <input type="text" class="form-input" id="compRoom" placeholder="e.g. A-204" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-input" id="compTitle" placeholder="Brief summary of the issue" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-input" id="compDesc" placeholder="Describe the issue in detail..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <div class="priority-row">
+              <button class="priority-opt p-low active" onclick="selectPriority(this,'low')">Low</button>
+              <button class="priority-opt p-med" onclick="selectPriority(this,'medium')">Medium</button>
+              <button class="priority-opt p-high" onclick="selectPriority(this,'high')">High</button>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="submitComplaint()" style="width:100%;justify-content:center;">📤 Submit Complaint</button>
+        </div>
+      </div>
+      <div class="complaint-list-wrap">
+        <h3>Recent Complaints</h3>
+        <div class="complaint-items" id="complaintList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUEST ROOM BOOKING -->
+<section id="booking">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Guest Accommodation</div>
+      <h2 class="section-title">Guest Room Booking</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Reserve comfortable guest accommodation for visiting family members and official guests.</p>
+    </div>
+    <div class="booking-container reveal reveal-delay-1">
+      <div class="booking-header">
+        <h3>🏨 Reserve Your Guest Room</h3>
+        <p>Subject to warden approval &nbsp;•&nbsp; Check-in: 12:00 PM &nbsp;•&nbsp; Check-out: 11:00 AM</p>
+      </div>
+      <div class="booking-body">
+        <div class="room-cards" id="roomCards">
+          <div class="room-card selected" onclick="selectRoom(this,'standard',300)">
+            <span class="room-avail-badge avail-green">Available</span>
+            <span class="room-icon">🛏️</span>
+            <div class="room-type">Standard Room</div>
+            <div class="room-price">₹300 / night</div>
+            <div class="room-desc">Single bed, attached bath</div>
+            <div class="room-features"><span class="room-feature">Fan</span><span class="room-feature">Inverter</span><span class="room-feature">Attached Bath</span></div>
+          </div>
+          <div class="room-card" onclick="selectRoom(this,'deluxe',500)">
+            <span class="room-avail-badge avail-green">Available</span>
+            <span class="room-icon">🛋️</span>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-price">₹500 / night</div>
+            <div class="room-desc">Double bed, premium amenities</div>
+            <div class="room-features"><span class="room-feature">AC</span><span class="room-feature">TV</span><span class="room-feature">Double Bed</span></div>
+          </div>
+          <div class="room-card" onclick="selectRoom(this,'suite',800)">
+            <span class="room-avail-badge avail-red">Only 1 Left</span>
+            <span class="room-icon">🏩</span>
+            <div class="room-type">Family Suite</div>
+            <div class="room-price">₹800 / night</div>
+            <div class="room-desc">2 beds, AC, living area</div>
+            <div class="room-features"><span class="room-feature">AC</span><span class="room-feature">Living Area</span><span class="room-feature">Kitchenette</span></div>
+          </div>
+        </div>
+
+        <!-- Availability preview -->
+        <div class="avail-section">
+          <h4>📅 Room Availability — April 2025</h4>
+          <div class="avail-mini-grid" id="availGrid"></div>
+          <div class="avail-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(34,197,94,0.5)"></div>Available</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(234,179,8,0.5)"></div>Partial</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(239,68,68,0.4)"></div>Fully Booked</div>
+          </div>
+        </div>
+
+        <div class="booking-form">
+          <div class="form-group">
+            <label class="form-label">Your Name (Resident)</label>
+            <input type="text" class="form-input" id="bName" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Roll Number</label>
+            <input type="text" class="form-input" id="bRoll" placeholder="e.g. 23001" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Guest Name</label>
+            <input type="text" class="form-input" id="bGuest" placeholder="Name of the guest" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Relation</label>
+            <select class="form-select" id="bRelation">
+              <option>Parent</option><option>Sibling</option><option>Relative</option>
+              <option>Official Guest</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Check-in Date</label>
+            <input type="date" class="form-input" id="checkin" oninput="calcPrice()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Check-out Date</label>
+            <input type="date" class="form-input" id="checkout" oninput="calcPrice()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <select class="form-select" id="bGuests">
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Number</label>
+            <input type="tel" class="form-input" id="bContact" placeholder="+91 XXXXX XXXXX" />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Special Requests</label>
+            <input type="text" class="form-input" id="bNotes" placeholder="Any special requirements" />
+          </div>
+        </div>
+
+        <!-- Price summary -->
+        <div class="price-summary" id="priceSummary" style="display:none;">
+          <div class="price-row"><span>Room type</span><span id="pRoom">—</span></div>
+          <div class="price-row"><span>Duration</span><span id="pNights">—</span></div>
+          <div class="price-row"><span>Rate per night</span><span id="pRate">—</span></div>
+          <div class="price-total"><span>Estimated Total</span><span id="pTotal">—</span></div>
+        </div>
+
+        <div class="rules-box">
+          <h4>Booking Rules & Guidelines</h4>
+          <ul class="rules-list">
+            <li>Advance booking of minimum 2 days required. Walk-in subject to availability.</li>
+            <li>Payment at the hostel office before check-in. Cash & UPI accepted.</li>
+            <li>Guests must carry valid government ID (Aadhar / Passport / Voter ID).</li>
+            <li>No cooking in rooms. Mess food available for guests at nominal charges.</li>
+            <li>Maximum stay of 5 consecutive nights per booking.</li>
+            <li>Residents are responsible for their guests' conduct at all times.</li>
+          </ul>
+        </div>
+        <div style="margin-top:1.5rem;text-align:right;">
+          <button class="btn-primary" onclick="submitBooking()" style="padding:14px 32px;">✅ Submit Booking Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPORTS -->
+<section id="sports">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Sports & Recreation</div>
+      <h2 class="section-title">Sports Facilities</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Click on any sport to see availability, timings, equipment, and how to book.</p>
+    </div>
+    <div class="sports-grid reveal reveal-delay-1" id="sportsGrid"></div>
+  </div>
+</section>
+
+<!-- Sport Modal -->
+<div class="sport-detail-modal" id="sportModal" onclick="closeSportModal(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="document.getElementById('sportModal').classList.remove('open')">✕</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <div class="modal-name" id="modalName"></div>
+    <div class="modal-details" id="modalDetails"></div>
+    <button class="btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center;" onclick="showToast('🏅 Booking request sent to Sports Secretary!'); document.getElementById('sportModal').classList.remove('open')">Book Equipment / Court</button>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Gallery</div>
+      <h2 class="section-title">Life at Govind Bhawan</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Capturing moments that make this hostel more than just a place to stay.</p>
+    </div>
+    <div class="gallery-filter reveal">
+      <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+      <button class="filter-btn" onclick="filterGallery('sports',this)">Sports</button>
+      <button class="filter-btn" onclick="filterGallery('cultural',this)">Cultural</button>
+      <button class="filter-btn" onclick="filterGallery('academic',this)">Academic</button>
+      <button class="filter-btn" onclick="filterGallery('mess',this)">Mess & Food</button>
+      <button class="filter-btn" onclick="filterGallery('festivals',this)">Festivals</button>
+    </div>
+    <div class="gallery-grid reveal reveal-delay-1" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- NOTICES -->
+<section id="notices">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Notices & Events</div>
+      <h2 class="section-title">Notice Board</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Stay informed about the latest hostel announcements, upcoming events, and opportunities.</p>
+    </div>
+    <div class="notices-layout reveal reveal-delay-1">
+      <div class="notice-board">
+        <h3>📌 Latest Notices</h3>
+        <div class="notice-list" id="noticeList"></div>
+      </div>
+      <div class="event-calendar">
+        <h3>📅 April 2025</h3>
+        <div class="calendar-wrap">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+            <div class="cal-month" id="calMonth">April 2025</div>
+            <button class="cal-nav" onclick="changeMonth(1)">›</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin:1.5rem 0 1rem;">Upcoming Events</h3>
+          <div class="upcoming-events" id="upcomingEvents"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Govind Bhawan</div>
+    <div class="footer-tagline">Indian Institute of Technology Roorkee • Uttarakhand</div>
+    <div class="footer-links">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#mess">Mess</a>
+      <a href="#complaints">Complaints</a><a href="#booking">Guest Rooms</a>
+      <a href="#sports">Sports</a><a href="#gallery">Gallery</a><a href="#notices">Notices</a>
+    </div>
+    <div style="margin-bottom:1.5rem;font-size:0.88rem;opacity:0.6;">
+      📍 Govind Bhawan, IIT Roorkee, Roorkee - 247667, Uttarakhand<br/>
+      📞 Warden: +91-1332-28XXXX &nbsp;|&nbsp; 📧 warden.govind@iitr.ac.in
+    </div>
+    <div class="footer-copy">© 2025 Govind Bhawan, IIT Roorkee. Built with pride by residents of GB.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span id="toastIcon">✅</span><span id="toastMsg">Success!</span></div>
+
+<script>
+// ── DARK MODE ──────────────────────────────────────────────────
+function toggleDark() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('darkBtn').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ── UTILITIES ──────────────────────────────────────────────────
+function showToast(msg, icon='✅') {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = icon;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── DATE ──────────────────────────────────────────────────────
+const now = new Date();
+document.getElementById('todayDate').textContent =
+  now.toLocaleDateString('en-IN', {weekday:'long',day:'numeric',month:'long',year:'numeric'});
+const todayStr = now.toISOString().split('T')[0];
+document.getElementById('checkin').min = todayStr;
+document.getElementById('checkout').min = todayStr;
+document.getElementById('checkin').value = todayStr;
+
+// ── WEEK STRIP ────────────────────────────────────────────────
+const dayNames7 = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const weekData = [
+  {present:[true,false,true], absent:[false,true,false]},
+  {present:[true,true,true], absent:[false,false,false]},
+  {present:[false,true,true], absent:[true,false,false]},
+  {present:[true,true,false], absent:[false,false,true]},
+  {present:[true,false,false], absent:[false,true,false]},
+  {present:[false,false,false], absent:[false,false,false]},
+  {present:[false,false,false], absent:[false,false,false]},
+];
+
+function buildWeekStrip() {
+  const today = now.getDay(); // 0=Sun
+  // Show Mon-Sun of current week
+  const strip = document.getElementById('weekStrip');
+  strip.innerHTML = '';
+  for (let i=0; i<7; i++) {
+    const dayOffset = i - (today === 0 ? 6 : today - 1); // Mon=0
+    const d = new Date(now); d.setDate(now.getDate() + dayOffset);
+    const isToday = d.toDateString() === now.toDateString();
+    const wd = weekData[i];
+    const dots = wd.present.map((p,j) =>
+      `<div class="day-dot ${p?'present':wd.absent[j]?'absent-dot':''}"></div>`
+    ).join('');
+    strip.innerHTML += `
+      <div class="day-pill ${isToday?'today':''}">
+        <div class="day-pill-name">${dayNames7[d.getDay()]}</div>
+        <div style="font-size:0.7rem;color:var(--text);font-weight:600;">${d.getDate()}</div>
+        <div class="day-pill-dots">${dots}</div>
+      </div>`;
+  }
+}
+buildWeekStrip();
+
+// ── MESS CARDS ────────────────────────────────────────────────
+const meals = [
+  { id:'breakfast', time:'7:30 AM – 9:30 AM', name:'Breakfast', menu:'Poha / Aloo Paratha, Boiled Eggs, Bread-Butter, Chai, Milk', state:null },
+  { id:'lunch', time:'12:30 PM – 2:30 PM', name:'Lunch', menu:'Dal Tadka, Sabzi, Rice, Roti, Salad, Pickle, Buttermilk', state:null },
+  { id:'dinner', time:'7:30 PM – 9:30 PM', name:'Dinner', menu:'Paneer Masala / Egg Curry, Dal, Rice, Roti, Kheer (Mon)', state:null },
+];
+let todayCount = 0;
+
+function renderMeals() {
+  document.getElementById('mealCards').innerHTML = meals.map(m => `
+    <div class="meal-card ${m.state==='present'?'marked':m.state==='absent'?'absent':''}" id="mc_${m.id}">
+      <div class="checkmark">✓</div>
+      <div class="meal-time">${m.time}</div>
+      <div class="meal-name">${m.name}</div>
+      <div class="meal-menu">${m.menu}</div>
+      <div class="meal-actions">
+        <button class="mark-btn ${m.state==='present'?'marked':''}" onclick="markMeal('${m.id}','present')">
+          ${m.state==='present'?'✓ Present':'Mark Present'}
+        </button>
+        <button class="absent-btn ${m.state==='absent'?'active':''}" onclick="markMeal('${m.id}','absent')">
+          ${m.state==='absent'?'✗ Absent':'Mark Absent'}
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+function markMeal(id, state) {
+  const roll = document.getElementById('rollInput').value.trim();
+  if (!roll) { showToast('Please enter your Roll Number first!', '⚠️'); return; }
+  const meal = meals.find(m => m.id === id);
+  const prev = meal.state;
+  meal.state = (prev === state) ? null : state; // toggle off if same
+  todayCount = meals.filter(m => m.state === 'present').length;
+  document.getElementById('todayCount').textContent = todayCount;
+  if (meal.state === 'present') showToast(`✅ ${meal.name} marked Present!`);
+  else if (meal.state === 'absent') showToast(`❌ ${meal.name} marked Absent`, '❌');
+  renderMeals();
+}
+renderMeals();
+
+// ── COMPLAINTS ────────────────────────────────────────────────
+let selectedCat = 'water';
+let selectedPriority = 'low';
+
+const complaints = [
+  { id:1, title:'Water leakage in corridor', cat:'💧 Water', room:'B-112', priority:'high', desc:'Continuous dripping near room B-112 bathroom, causing slippery floor.', status:'open', date:'Apr 10' },
+  { id:2, title:'Tube light not working', cat:'⚡ Electrical', room:'A-204', priority:'medium', desc:'Tube light fused, replacement requested since 3 days.', status:'progress', date:'Apr 8' },
+  { id:3, title:'Broken almirah door', cat:'🪑 Furniture', room:'C-315', priority:'low', desc:"Almirah door hinge broken, door doesn't close properly.", status:'done', date:'Apr 5' },
+  { id:4, title:'Wi-Fi down in east wing', cat:'📶 Internet', room:'East Wing', priority:'high', desc:'No internet connectivity on the 3rd floor east wing since morning.', status:'open', date:'Apr 11' },
+];
+
+function cycleStatus(id) {
+  const c = complaints.find(x => x.id === id);
+  if (!c) return;
+  const order = ['open','progress','done'];
+  c.status = order[(order.indexOf(c.status)+1) % order.length];
+  renderComplaints();
+  showToast(`Status updated to: ${c.status === 'progress' ? 'In Progress' : c.status.charAt(0).toUpperCase()+c.status.slice(1)}`);
+}
+
+function deleteComplaint(id) {
+  const idx = complaints.findIndex(x => x.id === id);
+  if (idx > -1) { complaints.splice(idx,1); renderComplaints(); showToast('🗑️ Complaint deleted', '🗑️'); }
+}
+
+function renderComplaints() {
+  document.getElementById('complaintList').innerHTML = complaints.length === 0
+    ? `<div style="text-align:center;padding:2rem;color:var(--muted);">No complaints yet ✓</div>`
+    : complaints.map(c => `
+    <div class="complaint-item ${c.priority}">
+      <div class="ci-top">
+        <div class="ci-title">${c.cat} • ${c.title}</div>
+        <div class="ci-actions">
+          <span class="ci-badge badge-${c.status}" onclick="cycleStatus(${c.id})" title="Click to update status" style="cursor:pointer;">
+            ${c.status==='progress'?'In Progress':c.status.charAt(0).toUpperCase()+c.status.slice(1)}
+          </span>
+          <button class="delete-btn" onclick="deleteComplaint(${c.id})" title="Delete complaint">🗑</button>
+        </div>
+      </div>
+      <div class="ci-desc">${c.desc}</div>
+      <div class="ci-meta">Room: ${c.room} &nbsp;|&nbsp; Priority: <strong>${c.priority}</strong> &nbsp;|&nbsp; ${c.date}</div>
+    </div>`).join('');
+}
+renderComplaints();
+
+function selectCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active'); selectedCat = cat;
+}
+function selectPriority(btn, p) {
+  document.querySelectorAll('.priority-opt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active'); selectedPriority = p;
+}
+
+let nextId = 10;
+function submitComplaint() {
+  const title = document.getElementById('compTitle').value.trim();
+  const room = document.getElementById('compRoom').value.trim();
+  const desc = document.getElementById('compDesc').value.trim();
+  if (!title || !room || !desc) { showToast('Please fill all required fields!', '⚠️'); return; }
+  const catBtn = document.querySelector('.cat-btn.active');
+  const catLabel = catBtn ? catBtn.textContent.trim() : '📋 Other';
+  complaints.unshift({ id:nextId++, title, cat:catLabel, room, priority:selectedPriority, desc, status:'open', date:'Apr '+now.getDate() });
+  renderComplaints();
+  document.getElementById('compTitle').value = '';
+  document.getElementById('compRoom').value = '';
+  document.getElementById('compDesc').value = '';
+  showToast('🎫 Complaint #GB' + Math.floor(1000+Math.random()*9000) + ' registered!');
+}
+
+// ── GUEST ROOM BOOKING ────────────────────────────────────────
+let selectedRoomPrice = 300;
+let selectedRoomLabel = 'Standard Room';
+
+function selectRoom(card, type, price) {
+  document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedRoomPrice = price;
+  selectedRoomLabel = card.querySelector('.room-type').textContent;
+  calcPrice();
+}
+
+// Availability grid
+const bookedDays = [16,17,22,23,24];
+const partialDays = [18,21,25];
+function buildAvailGrid() {
+  const grid = document.getElementById('availGrid');
+  grid.innerHTML = '';
+  for (let d=15; d<=30; d++) {
+    const isBooked = bookedDays.includes(d);
+    const isPartial = partialDays.includes(d);
+    const cls = isBooked ? 'booked' : isPartial ? 'partial' : 'free';
+    grid.innerHTML += `<div class="avail-day ${cls}" onclick="${cls==='free'||cls==='partial'?`pickDate(${d})`:''}"> ${d}</div>`;
+  }
+}
+buildAvailGrid();
+
+function pickDate(d) {
+  const dateStr = `2025-04-${String(d).padStart(2,'0')}`;
+  const ci = document.getElementById('checkin').value;
+  if (!ci || new Date(dateStr) <= new Date(ci)) {
+    document.getElementById('checkin').value = dateStr;
+  } else {
+    document.getElementById('checkout').value = dateStr;
+  }
+  calcPrice();
+  document.querySelectorAll('.avail-day').forEach(el => el.classList.remove('picked'));
+  event.target.classList.add('picked');
+}
+
+document.getElementById('checkin').addEventListener('change', function() {
+  document.getElementById('checkout').min = this.value;
+  calcPrice();
+});
+
+function calcPrice() {
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
+  const summary = document.getElementById('priceSummary');
+  if (!ci || !co || new Date(co) <= new Date(ci)) { summary.style.display='none'; return; }
+  const nights = Math.round((new Date(co)-new Date(ci))/(1000*60*60*24));
+  if (nights <= 0 || nights > 5) { summary.style.display='none'; return; }
+  document.getElementById('pRoom').textContent = selectedRoomLabel;
+  document.getElementById('pNights').textContent = nights + ' night' + (nights>1?'s':'');
+  document.getElementById('pRate').textContent = '₹' + selectedRoomPrice;
+  document.getElementById('pTotal').textContent = '₹' + (nights * selectedRoomPrice);
+  summary.style.display = 'block';
+}
+
+function submitBooking() {
+  const name = document.getElementById('bName').value.trim();
+  const roll = document.getElementById('bRoll').value.trim();
+  const guest = document.getElementById('bGuest').value.trim();
+  const contact = document.getElementById('bContact').value.trim();
+  if (!name || !roll || !guest || !contact) { showToast('Please fill all required fields!', '⚠️'); return; }
+  showToast('📧 Booking request submitted! Warden will confirm via email within 24 hours.', '🏨');
+}
+
+// ── SPORTS ──────────────────────────────────────────────────
+const sportsData = [
+  { icon:'⚽', name:'Football', time:'5:00 – 7:00 PM', avail:'Available', extra:{ Location:'Main Ground', Equipment:'Balls at store', Team:'11-a-side', Coach:'Self-organised', Contact:'Sports Sec' } },
+  { icon:'🏀', name:'Basketball', time:'4:30 – 8:30 PM', avail:'Available', extra:{ Location:'Basketball Court', Equipment:'Balls available', Team:'5-a-side', Lights:'Yes', Contact:'Sports Sec' } },
+  { icon:'🏓', name:'Table Tennis', time:'6:00 AM – 10:00 PM', avail:'Available', extra:{ Location:'Common Room', Tables:'3 tables', Booking:'First come first serve', Contact:'Mess Office' } },
+  { icon:'🎾', name:'Badminton', time:'5:30 – 9:30 PM', avail:'Limited', extra:{ Location:'Indoor Court', Courts:'2 courts', Booking:'Max 1hr/slot', Equipment:'Rackets & shuttles', Contact:'Sports Sec' } },
+  { icon:'🏋️', name:'Gymnasium', time:'5:30 AM – 10:00 PM', avail:'Available', extra:{ Location:'Hostel Gym Block', Equipment:'Weights, treadmill, cycle', Trainer:'Mon-Fri', Membership:'Free for residents', Contact:'Gym In-charge' } },
+  { icon:'🎱', name:'Billiards', time:'4:00 – 11:00 PM', avail:'Available', extra:{ Location:'Recreation Room', Tables:'2 tables', Booking:'30 min slots', Equipment:'Provided', Contact:'Hostel Office' } },
+  { icon:'🏑', name:'Hockey', time:'5:00 – 7:00 PM', avail:'Available', extra:{ Location:'Astro-turf Ground', Equipment:'Sticks at store', Season:'Oct – March', Contact:'Sports Sec' } },
+  { icon:'🎯', name:'Chess', time:'Anytime', avail:'Available', extra:{ Location:'Reading / Common Room', Boards:'10+ sets', Tournaments:'Monthly', Contact:'Club President' } },
+  { icon:'🏐', name:'Volleyball', time:'4:30 – 7:30 PM', avail:'Available', extra:{ Location:'Volleyball Court', Equipment:'Balls available', Team:'6-a-side', Contact:'Sports Sec' } },
+  { icon:'🤸', name:'Yoga & Fitness', time:'6:00 – 7:30 AM', avail:'Available', extra:{ Location:'Open Terrace', Instructor:'Certified Mon/Wed/Fri', Level:'All levels', Contact:'Student Wellness' } },
+  { icon:'🏏', name:'Cricket', time:'5:00 – 7:30 PM', avail:'Limited', extra:{ Location:'Main Cricket Ground', Equipment:'Bat & ball at Sports Room', Nets:'Practice nets available', Contact:'Sports Sec' } },
+];
+
+document.getElementById('sportsGrid').innerHTML = sportsData.map((s,i) => `
+  <div class="sport-card" onclick="openSportModal(${i})">
+    <span class="sport-icon">${s.icon}</span>
+    <div class="sport-name">${s.name}</div>
+    <div class="sport-time">⏰ ${s.time}</div>
+    <span class="sport-avail ${s.avail==='Available'?'avail-yes':'avail-limited'}">${s.avail}</span>
+  </div>`).join('');
+
+function openSportModal(i) {
+  const s = sportsData[i];
+  document.getElementById('modalIcon').textContent = s.icon;
+  document.getElementById('modalName').textContent = s.name;
+  document.getElementById('modalDetails').innerHTML = Object.entries(s.extra).map(([k,v]) => `
+    <div class="modal-detail">
+      <div class="md-label">${k}</div><div class="md-val">${v}</div>
+    </div>`).join('');
+  document.getElementById('sportModal').classList.add('open');
+}
+function closeSportModal(e) {
+  if (e.target.id === 'sportModal') document.getElementById('sportModal').classList.remove('open');
+}
+
+// ── GALLERY ──────────────────────────────────────────────────
+const galleryItems = [
+  { emoji:'⚽', label:'Inter-Hostel Football Championship', cat:'sports', bg:'#E8F4F0' },
+  { emoji:'🎭', label:'Cultural Night 2024', cat:'cultural', bg:'#FFF3E0' },
+  { emoji:'📚', label:'Study Group Session', cat:'academic', bg:'#E3F2FD' },
+  { emoji:'🍛', label:'Sunday Special Lunch', cat:'mess', bg:'#FFF8E1' },
+  { emoji:'🏀', label:'Basketball Tournament Finals', cat:'sports', bg:'#E8F4F0' },
+  { emoji:'🪔', label:'Diwali Celebrations in GB', cat:'festivals', bg:'#FFF3E0' },
+  { emoji:'🏆', label:'Sports Day Trophy Ceremony', cat:'sports', bg:'#E8F4F0' },
+  { emoji:'🎵', label:'Annual Music Night', cat:'cultural', bg:'#FCE4EC' },
+  { emoji:'🧪', label:'Research Symposium', cat:'academic', bg:'#E3F2FD' },
+  { emoji:'🎉', label:"Fresher's Welcome Night", cat:'cultural', bg:'#FFF3E0' },
+  { emoji:'🏅', label:'Athletics Meet Highlights', cat:'sports', bg:'#E8F4F0' },
+  { emoji:'🌙', label:'Eid Celebration at Mess', cat:'festivals', bg:'#FFF8E1' },
+];
+
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const items = cat === 'all' ? galleryItems : galleryItems.filter(g => g.cat === cat);
+  document.getElementById('galleryGrid').innerHTML = items.map(g => `
+    <div class="gallery-item" style="background:${g.bg};" onclick="showToast('📸 ${g.label}')">
+      <div class="gallery-placeholder">
+        <div class="gallery-emoji">${g.emoji}</div>
+        <div class="gallery-label">${g.label}</div>
+      </div>
+      <div class="gallery-overlay"><div class="gallery-tag">${g.cat}</div></div>
+    </div>`).join('');
+}
+filterGallery('all', document.querySelector('.filter-btn.active'));
+
+// ── NOTICES ──────────────────────────────────────────────────
+const notices = [
+  { day:'14', month:'Apr', type:'urgent', title:'Electricity Shutdown – 10 AM to 2 PM', desc:'Scheduled maintenance of the main transformer. Generator backup available for emergency.' },
+  { day:'15', month:'Apr', type:'event', title:'WEBATHON Submission Deadline', desc:'Final submissions for Govind Bhawan WEBATHON are due by end of day.' },
+  { day:'13', month:'Apr', type:'info', title:'Mess Menu Change – Special Thali Sunday', desc:"This Sunday's lunch features a special North Indian thali. Register for extra portions by Saturday 8 PM." },
+  { day:'12', month:'Apr', type:'event', title:'Inter-Hostel Badminton Semis', desc:'Semi-finals of the Inter-Hostel Badminton Championship at the Institute Indoor Court.' },
+  { day:'11', month:'Apr', type:'info', title:'Laundry Service – New Timings', desc:'Hostel laundry now operates Mon–Sat, 8 AM to 6 PM. Same-day pickup if submitted before noon.' },
+  { day:'10', month:'Apr', type:'event', title:'Night Astronomy Session', desc:'Astronomy Club stargazing on the hostel terrace. Telescope access. All residents welcome, 9 PM.' },
+];
+
+document.getElementById('noticeList').innerHTML = notices.map(n => `
+  <div class="notice-item ${n.type}">
+    <div class="notice-date-box"><div class="notice-day">${n.day}</div><div class="notice-month">${n.month}</div></div>
+    <div class="notice-content">
+      <h4>${n.title}</h4><p>${n.desc}</p>
+      <span class="notice-type type-${n.type}">${n.type==='info'?'ℹ️ Info':n.type==='urgent'?'🚨 Urgent':'🎉 Event'}</span>
+    </div>
+  </div>`).join('');
+
+// ── CALENDAR ──────────────────────────────────────────────────
+let calYear = 2025; let calMon = 3;
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const calDayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const eventDays = [12,13,14,15,18,21,25];
+
+function renderCalendar() {
+  document.getElementById('calMonth').textContent = monthNames[calMon] + ' ' + calYear;
+  const firstDay = new Date(calYear, calMon, 1).getDay();
+  const daysInMonth = new Date(calYear, calMon+1, 0).getDate();
+  const todayDay = (now.getMonth()===calMon && now.getFullYear()===calYear) ? now.getDate() : -1;
+  let html = calDayNames.map(d => `<div class="cal-day-header">${d}</div>`).join('');
+  for (let i=0; i<firstDay; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d=1; d<=daysInMonth; d++) {
+    const isToday = d===todayDay;
+    const hasEvent = eventDays.includes(d);
+    html += `<div class="cal-day ${isToday?'today':''} ${hasEvent&&!isToday?'has-event':''}">${d}</div>`;
+  }
+  document.getElementById('calGrid').innerHTML = html;
+}
+renderCalendar();
+
+function changeMonth(dir) {
+  calMon += dir;
+  if (calMon > 11) { calMon=0; calYear++; }
+  if (calMon < 0) { calMon=11; calYear--; }
+  renderCalendar();
+}
+
+const upcoming = [
+  { color:'red', title:'Electricity Shutdown', date:'Apr 14, 10 AM – 2 PM' },
+  { color:'gold', title:'WEBATHON Deadline', date:'Apr 15, End of Day' },
+  { color:'', title:'Mess Committee Meeting', date:'Apr 18, 6 PM' },
+  { color:'gold', title:'Cultural Night – GB Fest', date:'Apr 21, 7 PM' },
+  { color:'', title:'Volleyball Finals', date:'Apr 25, 4:30 PM' },
+];
+document.getElementById('upcomingEvents').innerHTML = upcoming.map(e => `
+  <div class="ue-item">
+    <div class="ue-dot ${e.color}"></div>
+    <div><div class="ue-title">${e.title}</div><div class="ue-date">${e.date}</div></div>
+  </div>`).join('');
+</script>
+</body>
+</html>
