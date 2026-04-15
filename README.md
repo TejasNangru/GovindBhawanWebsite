@@ -1,5 +1,7 @@
 # 🏠 Govind Bhawan – IIT Roorkee Portal
 
+## [Live Demo](https://tejasnangru.github.io/GovindBhawanWebsite/)
+
 A modern, interactive hostel management web interface designed for Govind Bhawan, IIT Roorkee, integrating essential student services into a single seamless platform.
 
 ---
